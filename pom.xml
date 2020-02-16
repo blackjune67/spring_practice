@@ -13,11 +13,12 @@
         <encoding>UTF-8</encoding>
         <java.version>1.8</java.version>
         <spring.version>4.0.9.RELEASE</spring.version>
+        <maven.complier.target>12</maven.complier.target>
+        <maven.complier.source>12</maven.complier.source>
     </properties>
 
     <!-- 의존성 주입 TEST -->
     <dependencies>
-
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -62,26 +63,27 @@
     </dependencies>
 
     <build>
-
+        <finalName>spring basic</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.1</version>
+                <configuration>
+                    <!-- put your configurations here -->
+                        <transformers>
+                            <transformer
+                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                <mainClass>kr.co.springFramePractice.cli</mainClass>
+                            </transformer>
+                        </transformers>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>kr.co.springFramePractice.web.Main</mainClass>
-                                </transformer>
-                            </transformers>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
