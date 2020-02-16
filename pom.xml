@@ -13,8 +13,9 @@
         <encoding>UTF-8</encoding>
         <java.version>1.8</java.version>
         <spring.version>4.0.9.RELEASE</spring.version>
-        <maven.complier.target>12</maven.complier.target>
-        <maven.complier.source>12</maven.complier.source>
+
+        <maven.compile.target>12</maven.compile.target>
+        <maven.compile.source>12</maven.compile.source>
     </properties>
 
     <!-- 의존성 주입 TEST -->
@@ -60,6 +61,15 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.2.1.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -67,25 +77,34 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.6.1</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <fork>true</fork>
+                    <executable><!-- path-to-javac --></executable>
+                    <compilerVersion>12</compilerVersion>
+                </configuration>
+                <!--<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.1</version>
-                <configuration>
-                    <!-- put your configurations here -->
-                        <transformers>
-                            <transformer
-                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                <mainClass>kr.co.springFramePractice.cli</mainClass>
-                            </transformer>
-                        </transformers>
-                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                        <configuration>
+                            &lt;!&ndash; put your configurations here &ndash;&gt;
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>kr.co.springFramePractice.web.Main</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
                     </execution>
-                </executions>
+                </executions>-->
             </plugin>
         </plugins>
     </build>

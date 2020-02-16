@@ -25,7 +25,7 @@ public class Member {
         try {
             this.id = resultSet.getInt("id");
             this.username = resultSet.getString("username");
-            this.username = resultSet.getString("password");
+            this.password = resultSet.getString("password");
         } catch (SQLException e) {
             e.printStackTrace();
         }
