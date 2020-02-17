@@ -39,9 +39,22 @@
         </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13</version>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.6.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.6.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.6.0</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -85,7 +98,10 @@
                     <executable><!-- path-to-javac --></executable>
                     <compilerVersion>12</compilerVersion>
                 </configuration>
-                <!--<groupId>org.apache.maven.plugins</groupId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.1</version>
                 <executions>
@@ -95,7 +111,6 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            &lt;!&ndash; put your configurations here &ndash;&gt;
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
@@ -104,7 +119,17 @@
                             </transformers>
                         </configuration>
                     </execution>
-                </executions>-->
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.22.2</version>
             </plugin>
         </plugins>
     </build>

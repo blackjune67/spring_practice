@@ -10,13 +10,21 @@ import java.sql.*;
 public class Main {
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+    public static void main(String[] args) throws SQLException {
         logger.info("로그를 찍어봅니다.");
+
+        try {
+            Class.forName("org.h2.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         //Dao dao = new Dao();
         ApplicationContext context = new ClassPathXmlApplicationContext("dao.xml");
-        Dao dao = context.getBean("dao",Dao.class); //Dao.class 앞에 "dao" 가 id에 해당.
+        //Dao dao = context.getBean("dao",Dao.class); //Dao.class 앞에 "dao" 가 id에 해당.
         //Dao new_dao = context.getBean("new_dao", Dao.class);
-
-        dao.run();
+        //Dao2 dao2 = context.getBean("dao2", Dao2.class);
+        //dao.run();
+        //dao2.run();
     }
 }
