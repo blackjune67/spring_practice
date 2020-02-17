@@ -2,6 +2,8 @@ package kr.co.springFramePractice.cli;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.*;
 
@@ -10,36 +12,11 @@ public class Main {
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         logger.info("로그를 찍어봅니다.");
+        //Dao dao = new Dao();
+        ApplicationContext context = new ClassPathXmlApplicationContext("dao.xml");
+        Dao dao = context.getBean("dao",Dao.class); //Dao.class 앞에 "dao" 가 id에 해당.
+        //Dao new_dao = context.getBean("new_dao", Dao.class);
 
-        Class.forName("org.h2.Driver");
-        String url = "jdbc:h2:mem:test;MODE=MySQL;";
-
-        //JDK10 이상은 var 지원,  Connection => var
-        try (Connection connection = DriverManager.getConnection(url, "sa", "");
-             Statement statement = connection.createStatement()) {
-
-            connection.setAutoCommit(false);
-            statement.execute("create table member(id int auto_increment, username varchar(255) not null, password varchar(255) not null, primary key(id))");
-
-            try {
-                statement.executeUpdate("insert into member(username, password) values('DanB', '1234')");
-                connection.commit();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                connection.rollback();
-            }
-
-            //JDK10 이상은 var 지원,  ResultSet => var
-            ResultSet resultSet = statement.executeQuery("select id, username, password from member;");
-            while (resultSet.next()) {
-                Member member = new Member(resultSet); //Member => var
-                //기존의 로그로 찍었던 것을 Member 에서 메소드로 정의해서 출력하도록 변경.
-                /*logger.info("sqlTest : /Debug MSG ==> ID : " + id + " userName : " + username + " passWord : " + pw);*/
-                logger.info(member.toString());
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        dao.run();
     }
-
 }

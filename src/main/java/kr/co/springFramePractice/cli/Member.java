@@ -14,20 +14,19 @@ import java.sql.SQLException;
 @RequiredArgsConstructor
 public class Member {
     private int id;
-    @NonNull private String username;
-    @NonNull private String pw;
+    @NonNull
+    private String username;
+    @NonNull
+    private String password;
 
     public Member(ResultSet resultSet) {
-        try {
-            this.id = resultSet.getInt("ID");
-            this.username = resultSet.getString("USERNAME");
-            this.pw = resultSet.getString("PASSWORD");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
+            try {
+                this.id = resultSet.getInt("id");
+                this.username = resultSet.getString("username");
+                this.password = resultSet.getString("password");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
 /*
     @ToString 어노테이션으로 인해 생략 가능.
 
@@ -35,8 +34,6 @@ public class Member {
     public String toString() {
         return "sqlTest : /Debug MSG ==> ID : " + id + " userName : " + username + " passWord : " + pw;
     }*/
-}
-
-
-
+        }
+    }
 

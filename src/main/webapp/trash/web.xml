@@ -15,9 +15,10 @@
         <url-pattern>/simple</url-pattern>
     </servlet-mapping>
 
+    <!--로그인 사용처리 등을 사용할 때 filter-->
     <filter>
         <filter-name>simpleFilter</filter-name>
-        <filter-class>kr.co.springFramePractice.web.SimpleServlet</filter-class>
+        <filter-class>kr.co.springFramePractice.web.SimpleFilter</filter-class>
     </filter>
 
     <filter-mapping>
