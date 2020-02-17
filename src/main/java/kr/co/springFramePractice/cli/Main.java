@@ -1,12 +1,15 @@
 package kr.co.springFramePractice.cli;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.Lifecycle;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.*;
 
+@Slf4j
 public class Main {
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
@@ -17,8 +20,14 @@ public class Main {
         ApplicationContext context = new ClassPathXmlApplicationContext("dao.xml");
         //Dao dao = context.getBean("dao",Dao.class); //Dao.class 앞에 "dao" 가 id에 해당.
         //Dao new_dao = context.getBean("new_dao", Dao.class);
-        Dao2 dao2 = context.getBean("dao2", Dao2.class);
+        //Dao2 dao2 = context.getBean("dao2", Dao2.class);
         //dao.run();
-        dao2.run();
+        //dao2.run();
+        /*ConnectionFactory factory = context.getBean(ConnectionFactory.class);
+        Connection connection = factory.getConnection();*/
+
+        //Lifecycle lifecycle = context.getBean(Lifecycle.class);
+
+
     }
 }
