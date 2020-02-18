@@ -29,6 +29,5 @@
         <constructor-arg ref="connection"/>
     </bean>
 
-    <bean class="kr.co.springFramePractice.cli.config"/>
-    <bean class="kr.co.springFramePractice.cli.A"/>
+    <bean class="kr.co.springFramePractice.cli.AppConfig"/>
 </beans>
