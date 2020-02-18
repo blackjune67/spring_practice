@@ -13,13 +13,17 @@ import javax.annotation.Resource;
 @Slf4j
 @Component
 public class A {
-    @Resource private B b;
-    @Autowired private ApplicationContext context;
-    @Value("{systemPropertise['hello']}") String property;
+    @Autowired private B b;
+    //@Autowired private ApplicationContext context;
+    //@Value("{systemPropertise['hello']}") String property;
+
+    public A(B b) {
+        this.b = b;
+    }
 
     @PostConstruct
     void init() {
-        log.info("A post construct");
+        log.info("A post construct" + b);
     }
 
     @PreDestroy
