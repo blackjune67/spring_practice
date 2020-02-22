@@ -21,6 +21,7 @@ public class AppConfig {
         return new Dao(connection);
     }
 
+
     public ConnectionFactory connectionFactory(
             @Value("${jdbc.driver-class}") String driverClass,
             @Value("${jdbc.url}") String url,
