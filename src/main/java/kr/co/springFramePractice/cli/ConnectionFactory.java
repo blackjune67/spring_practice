@@ -41,10 +41,4 @@ public class ConnectionFactory implements InitializingBean {
         log.info("init");
         this.connection = createConnection();
     }
-
-
-
-
-
-
 }
