@@ -3,12 +3,14 @@ package kr.co.springFramePractice.cli;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.sql.Connection;
 
 @Configuration
-@ComponentScan(basePackageClasses = AppConfig.class)
+//@ComponentScan(basePackageClasses = AppConfig.class)
 //@PropertySource("classpath:application-${spring.protiles.active}.properties")
+@Profile("default")
 public class AppConfig {
 
     @Bean
@@ -16,7 +18,17 @@ public class AppConfig {
         return new B();
     }
 
-/*    @Bean
+    @Bean(initMethod = "init", destroyMethod = "destory")
+    public A a(B b) {
+        return new A(b);
+    }
+
+    @Bean(initMethod = "init", destroyMethod = "destory")
+    public ConnectionFactory connectionFactory() {
+        return new ConnectionFactory("org.h2.Driver", "jdbc:h2:mem:test", "sa", "");
+    }
+
+    @Bean
     public Connection connection(ConnectionFactory connectionFactory) {
         return connectionFactory.getConnection();
     }
@@ -24,7 +36,7 @@ public class AppConfig {
     @Bean
     public Dao dao(Connection connection) {
         return new Dao(connection);
-    }*/
+    }
 
 
 /*    public ConnectionFactory connectionFactory(

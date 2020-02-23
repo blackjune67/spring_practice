@@ -27,13 +27,17 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         log.info("[MAIN] 로그!");
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        //ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("dao.xml");
         //ConfigurableApplicationContext context = new AnnotationConfigApplicationContext("kr.co.springFramePractice.cli");
         //ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
-        context.scan("kr.co.springFramePractice.cli");
-        //context.register(AppConfig.class);
+        context.register(AppConfig.class);
         context.refresh();
-        B b = context.getBean(B.class);
-        log.info("" + b);
-        context.close();
+        //context.scan("kr.co.springFramePractice.cli");
+        Dao dao = context.getBean(Dao.class);
+        dao.run();
+        //context.register(AppConfig.class);
+        //B b = context.getBean(B.class);
+        //log.info("" + b);
+        log.info(">>>>>> 데이터 Accept Opp : " + dao);
     }
 }

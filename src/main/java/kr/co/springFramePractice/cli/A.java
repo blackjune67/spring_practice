@@ -15,22 +15,20 @@ import javax.inject.Named;
 //@Component
 //@Named("a")
 public class A {
-    @Autowired private B b;
-    @Autowired private ApplicationContext context;
-    @Value("{systemPropertise['hello']}") String property;
+    private B b;
+    /*@Autowired private ApplicationContext context;
+    @Value("{systemPropertise['hello']}") String property;*/
 
-    /*public A(B b) {
+    public A(B b) {
         this.b = b;
-    }*/
-
-    @PostConstruct
-    void init() {
-        log.info("A post construct" + b);
     }
 
-    @PreDestroy
+    void init() {
+        log.error("A post construct" + b);
+    }
+
     void destory() {
-        log.info("A pre 디스트로이");
+        log.error("A pre 디스트로이");
     }
 
 

@@ -32,7 +32,6 @@ public class ConnectionFactory implements InitializingBean {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         return DriverManager.getConnection(this.url, this.user, this.password);
     }
 
@@ -40,5 +39,13 @@ public class ConnectionFactory implements InitializingBean {
     public void afterPropertiesSet() throws Exception {
         log.info("init");
         this.connection = createConnection();
+    }
+
+    private void init() throws Exception {
+        log.info("연결");
+    }
+
+    private void destory() {
+        log.error("실패");
     }
 }
