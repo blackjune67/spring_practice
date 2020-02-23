@@ -1,17 +1,17 @@
 package kr.co.springFramePractice.cli;
 
-
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import java.sql.Connection;
 
-@PropertySource("classpath:application-${spring.protiles.active}.properties")
+@Configuration
+//@ComponentScan(basePackages = AppConfig)
+//@PropertySource("classpath:application-${spring.protiles.active}.properties")
 public class AppConfig {
 
-    @Bean
+
+/*    @Bean
     public Connection connection(ConnectionFactory connectionFactory) {
         return connectionFactory.getConnection();
     }
@@ -19,10 +19,10 @@ public class AppConfig {
     @Bean
     public Dao dao(Connection connection) {
         return new Dao(connection);
-    }
+    }*/
 
 
-    public ConnectionFactory connectionFactory(
+/*    public ConnectionFactory connectionFactory(
             @Value("${jdbc.driver-class}") String driverClass,
             @Value("${jdbc.url}") String url,
             @Value("${jdbc.username}") String username,
@@ -30,11 +30,10 @@ public class AppConfig {
     ) {
 
         return new ConnectionFactory(driverClass, url, username, password);
-    }
+    }*/
 
-    @Bean
+    /*@Bean
     public LocalValidationFactoryBean localValidationFactoryBean() {
         return new LocalValidatorFactoryBean();
-    }
-
+    }*/
 }

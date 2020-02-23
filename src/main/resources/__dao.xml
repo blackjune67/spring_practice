@@ -9,9 +9,17 @@
 
     <context:annotation-config/>
 
+    <context:component-scan base-package="kr.co.springFramePractice.cli" />
+<!--    <bean id="connectionFactory" class="kr.co.springFramePractice.cli.ConnectionFactory">
+        <constructor-arg name="driverClass" value="${jdbc.driver-class}"/>
+        <constructor-arg name="url" value="${jdbc.url}"/>
+        <constructor-arg name="user" value="${jdbc.user}"/>
+        <constructor-arg name="password" value="${jdbc.password}"/>
+    </bean>-->
+
     <bean id="connectionFactory" class="kr.co.springFramePractice.cli.ConnectionFactory">
         <constructor-arg name="driverClass" value="org.h2.Driver"/>
-        <constructor-arg name="url" value="jdbc:h2:mem:test;"/>
+        <constructor-arg name="url" value="jdbc:h2:mem:test"/>
         <constructor-arg name="user" value="sa"/>
         <constructor-arg name="password" value=""/>
     </bean>
@@ -29,5 +37,5 @@
         <constructor-arg ref="connection"/>
     </bean>
 
-    <bean class="kr.co.springFramePractice.cli.config"/>
+    <bean class="kr.co.springFramePractice.cli.AppConfig"/>
 </beans>
