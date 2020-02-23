@@ -18,24 +18,22 @@ import java.lang.reflect.Type;
 import java.sql.*;
 
 @Slf4j
-@Configuration
+//@Configuration
 //@ComponentScan(basePackages = "kr.co.springFramePractice.cli")
-@ComponentScan(basePackageClasses = Main.class, excludeFilters = @Filter(type = FilterType.REGEX, pattern = "kr.co.springFramePractice.cli"))
+//@ComponentScan(basePackageClasses = Main.class, excludeFilters = @Filter(type = FilterType.REGEX, pattern = "kr.co.springFramePractice.cli"))
 public class Main {
     //private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws SQLException {
         log.info("[MAIN] 로그!");
-        //AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         //ConfigurableApplicationContext context = new AnnotationConfigApplicationContext("kr.co.springFramePractice.cli");
-        ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
-
+        //ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
+        context.scan("kr.co.springFramePractice.cli");
+        //context.register(AppConfig.class);
+        context.refresh();
         B b = context.getBean(B.class);
         log.info("" + b);
-        //context.refresh();
-
-        //context.register(AppConfig.class);
-        //context.scan("kr.co.springFramePractice.cli");
         context.close();
     }
 }

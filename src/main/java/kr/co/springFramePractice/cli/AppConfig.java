@@ -1,15 +1,20 @@
 package kr.co.springFramePractice.cli;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.sql.Connection;
 
 @Configuration
-//@ComponentScan(basePackages = AppConfig)
+@ComponentScan(basePackageClasses = AppConfig.class)
 //@PropertySource("classpath:application-${spring.protiles.active}.properties")
 public class AppConfig {
 
+    @Bean
+    public B bo() {
+        return new B();
+    }
 
 /*    @Bean
     public Connection connection(ConnectionFactory connectionFactory) {

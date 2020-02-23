@@ -8,9 +8,12 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 @Slf4j
-@Component
+//@Component
+//@Named("a")
 public class A {
     @Autowired private B b;
     @Autowired private ApplicationContext context;
