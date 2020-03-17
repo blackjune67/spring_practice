@@ -62,6 +62,9 @@ public class Owner extends Person {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
 	private Set<Pet> pets;
 
+	@Column(name = "age") //추가
+	private Integer age;
+
 	public String getAddress() {
 		return this.address;
 	}
@@ -86,7 +89,19 @@ public class Owner extends Person {
 		this.telephone = telephone;
 	}
 
-	protected Set<Pet> getPetsInternal() {
+    public void setPets(Set<Pet> pets) {
+        this.pets = pets;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    protected Set<Pet> getPetsInternal() {
 		if (this.pets == null) {
 			this.pets = new HashSet<>();
 		}
@@ -141,10 +156,15 @@ public class Owner extends Person {
 	@Override
 	public String toString() {
 		return new ToStringCreator(this)
-
-				.append("id", this.getId()).append("new", this.isNew()).append("lastName", this.getLastName())
-				.append("firstName", this.getFirstName()).append("address", this.address).append("city", this.city)
-				.append("telephone", this.telephone).toString();
+				.append("id", this.getId())
+                .append("new", this.isNew())
+                .append("lastName", this.getLastName())
+				.append("firstName", this.getFirstName())
+                .append("address", this.address)
+                .append("city", this.city)
+                .append("age", this.age) //추가
+				.append("telephone", this.telephone)
+                .toString();
 	}
 
 }
